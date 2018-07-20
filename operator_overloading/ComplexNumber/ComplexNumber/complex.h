@@ -19,8 +19,10 @@ public:
 	}
 
 	complex &operator= (const complex &other);
-	//complex &operator+ (const complex &other);
-	//complex &operator- (const complex &other);
+	bool operator== (const complex &other) const;
+	bool operator!= (const complex &other) const;
 	~complex();
 };
-ostream &operator<< (ostream &out, const complex &c);
+ostream& operator<< (ostream &out, const complex &c);
+complex operator+ (const complex &c1, const complex &c2);
+complex operator- (const complex &c1, const complex &c2);
