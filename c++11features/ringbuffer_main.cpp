@@ -11,9 +11,15 @@ int main(){
     buff.add_to_buffer("four");
     buff.add_to_buffer("five");
     buff.add_to_buffer("six");
-
-    for(int i = 0;i < buff.capacity(); i++){
-        cout << buff.get_from_buffer(i) << endl;
+    
+    // C++ 98 style iteration
+    for(ringbuffer<string>::iterator it = buff.begin(); it != buff.end(); it++){
+        cout << *it << endl;
+    }
+    cout << endl;
+    // C++ 11 style iteration
+    for(string s: buff){
+        cout << s << endl;
     }
 
     return 0;

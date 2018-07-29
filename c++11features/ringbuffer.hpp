@@ -9,7 +9,7 @@ class ringbuffer{                     // Template class
     int m_size;
     T *m_values;
 public:
-    class iterator;
+    class iterator;                 // doesn't have access to ringbuffer private variables
 public:
     ringbuffer(int size):m_pos(0), m_size(size), m_values(NULL){
         m_values = new T[size];
@@ -31,12 +31,40 @@ public:
         if (pos < m_size)
             return m_values[pos];
     }
+    iterator begin(){
+        return iterator(0, *this);
+    }
+    iterator end(){
+        return iterator(m_size, *this);
+    }
 };
 
 template<class T>
 class ringbuffer<T>::iterator{        // Nested template class
+    int m_pos;
+    ringbuffer &m_buff;
 public:
-    void print(){
-        cout << "Hello from iterator: " << T() << endl;
+    iterator(int pos, ringbuffer &buff):m_pos(pos),m_buff(buff){}
+
+    bool operator!=(const iterator &other) const{
+        return m_pos != other.m_pos;
+    }
+
+    T &operator*(){
+        return m_buff.get_from_buffer(m_pos);
+    }
+
+    iterator &operator++(int){
+        // postfix operator
+        m_pos++;
+
+        return *this;
+    }
+
+    iterator &operator++(){
+        // prefix operator
+        ++m_pos;
+
+        return *this;
     }
 };
