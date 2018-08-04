@@ -9,7 +9,7 @@ public:
     test() = default;  // default constructor, is set to default 
                         // implementation by the compiler
     
-    test(const test &other) = delete;  // same for copy constructor
+    test(const test &other) = delete;  // delete implementation of default copy constructor
 
     test &operator= (const test &other) = delete;  // delete the default implementation
                                                     // for = operator
