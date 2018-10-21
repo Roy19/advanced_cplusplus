@@ -2,6 +2,8 @@
  * objects that must stay persistent. Once all the object 
  * pointers are out of scope, the memory of the object is 
  * destructed not otherwise.
+ * 
+ * Reference : https://en.cppreference.com/w/cpp/memory/shared_ptr
 */
 
 #include <iostream>
